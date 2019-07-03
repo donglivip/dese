@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/jinrishouru.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">销售数量</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+                <div class="main-box">
+					<div class="box-top">
+						<div class="box-text">销售数量</div>
+					</div>
+					<div class="box-bottom">
+						<div class="box-news xiaoshou">0</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					type:"post",
+					url:myurl+"/commodity/querySmSpreadNexusCountByUserId",
+					async:true,
+					dataType:'json',
+					data:{
+						smUserId:localStorage.getItem('myid')
+					},
+					success:function(res){
+						if(res.status==200){
+							$(".xiaoshou").html(res.data.countNum)
+						}else{
+							alert(res.msg)
+						}
+					},
+					error:function(err){
+						alert("网络连接失败，请稍后重试")
+					}
+				});
+			})
+		</script>
+</html>

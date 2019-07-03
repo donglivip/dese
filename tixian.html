@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/tixian.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">提现</div>
+				<div class="header-aside" style="font-size: .2rem;white-space: nowrap;position: relative;right: .4rem;" @click="opennew('shezhi')">
+					设置提现密码
+				</div>
+			</div>
+			<div class="main">
+				<div class="main-one">
+					<div class="one-box">
+						<div class="one-news">￥</div>
+						<input type="number" v-model="price" placeholder="0.00"/>
+					</div>
+				</div>
+				<div class="main-two">
+					<div class="two-text">提现方式</div>
+				</div>
+				<div class="main-three">
+					<div class="three-box" @click="change(1)">
+						<div class="three-text">支付宝</div>
+						<img src="" v-if="state==2" />
+						<img src="./img/xuanzhong (1).png" v-if="state==2" />
+						<img src="./img/xuanzhong.png" v-if="state==1" />
+					</div>
+					<!--<div class="three-box" @click="change(2)">
+						<div class="three-text">微信</div>
+						<img src="./img/xuanzhong (1).png" v-if="state==1" />
+						<img src="./img/xuanzhong.png" v-if="state==2" />
+					</div>-->
+				</div>
+				<div class="main-two" style="color: red;font-weight: 600;height: auto;">
+					<div class="two-text" v-if="guizedata!=''">
+						提现账户必须准确填写,账户余额不能低于10元,每次提现必须满足最低提现金额{{guizedata[0].smWcrManagementExpense}}元，每次提现提现扣除运营费用20%(15%进入复购积分，并扣除运营管理费手续费5%)
+					</div>
+				</div>
+			</div>
+			<div class="bottom" :class="price==''?'':'active'" @click="chuxian()">
+				<div class="bottom-text">确认提现</div>
+			</div>
+			<div class="box" v-if="xianshi">
+				<div class="box-inner">
+					<img src="img/close.png" @click="yincang">
+					<input type="number" placeholder="请输入提现密码" class="mima" v-model="smCashPassword"/>
+					<div class="box-bottom" @click="myajax">确认</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		new Vue({
+			el: '.wrapper',
+			data: {
+				price: '',
+				state: 1,
+				guizedata: '',
+				smCashPassword:'',
+				xianshi:false,
+			},
+			methods: {
+				chuxian:function () {
+					this.xianshi=true
+				},
+				yincang:function () {
+					this.xianshi=false
+				},
+				opennew:function(){
+					mui.openWindow({
+						url: 'shezhi.html',
+						id: 'shezhi'
+					})
+				},
+				change: function(index) {
+					this.state = index
+				},
+				myajax: function() {
+					var that = this
+					plus.nativeUI.showWaiting()
+					
+					if(this.price == '') {
+						plus.nativeUI.closeWaiting()
+						return false;
+					}
+					if(this.smCashPassword != localStorage.getItem('smCashPassword')) {
+						plus.nativeUI.closeWaiting()
+						alert('提现密码错误')
+						return false;
+					}
+					if(this.price <10) {
+						alert('最少提现10元')
+						plus.nativeUI.closeWaiting()
+						return false;
+					}
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/querySmUserWallet",
+						async: false,
+						dataType: 'json',
+						data: {
+							smUserId: localStorage.getItem('myid')
+						},
+						success: function(res) {
+							if(res.status == 200) {
+								if(res.data.smUwPrice < (10 + parseFloat(that.price))) {
+									alert('账户余额不可低于10元')
+									plus.nativeUI.closeWaiting()
+								} else {
+									//				提现
+									$.ajax({
+										type: 'post',
+										url: myurl + '/user/userCashWithdrawal',
+										dataType: 'json',
+										data: {
+											totalMoney: that.price,
+											smUserId: localStorage.getItem('myid'),
+											state: that.state,
+											expenseMoney: that.price * that.guizedata[0].smWcrManagementExpense / 100,
+											point: that.price * that.guizedata[0].smWcrServiceCharge / 100,
+											smCashPassword:that.smCashPassword
+										},
+										success: function(res) {
+											if(res.status == 200) {
+												plus.nativeUI.closeWaiting()
+												mui.back()
+											} else {
+												plus.nativeUI.closeWaiting()
+												alert(res.msg)
+											}
+										},
+										error: function(res) {
+											alert('网络连接失败，请检查网络后再试！')
+										}
+									})
+								}
+							} else {
+								alert(res.data)
+							}
+						},
+						error: function(err) {
+							plus.nativeUI.closeWaiting()
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+
+				}
+
+			},
+			mounted: function() {
+				var that = this
+				mui.plusReady(function(){
+					if(localStorage.getItem('smCashPassword')==null||localStorage.getItem('smCashPassword')=='null'){
+						plus.nativeUI.toast('请先设置提现密码')
+						mui.openWindow('xtixian.html','xtixian')
+					}
+				})
+				
+				$.ajax({
+					type: 'post',
+					url: myurl + '/smUser/querySmWithdrawCashRule',
+					dataType: 'json',
+					success: function(res) {
+						if(res.status == 200) {
+							that.guizedata = res.data
+						} else {
+							alert(res.msg)
+						}
+					},
+					error: function(res) {
+						alert('网络连接失败，请检查网络后再试！')
+					}
+				})
+			}
+		})
+	</script>
+
+</html>

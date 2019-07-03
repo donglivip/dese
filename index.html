@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/shouye.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside"></div>
+				<div class="header-text">
+					<img src="img/header.png" class="mylogo" />
+				</div>
+				<div class="header-aside news">
+					<img src="img/news.png" />
+				</div>
+			</div>
+			<div class="main">
+				<a class="xuanfu" href="http://wpa.qq.com/msgrd?v=3&uin=2446504915&site=qq&menu=yes">
+					<img src="img/xiaox.png" />
+					<div class="xuanfu-text">在线客服</div>
+				</a>
+				<div class="swiper-container main-one">
+					<div class="swiper-wrapper">
+
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+				</div>
+				<div class="nav">
+					<div class="nav-tab">
+						<img src="img/nav01.png">
+						<span>日用商品</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav02.png">
+						<span>母婴用品</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav08.png">
+						<span>时髦孕妈</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav06.png">
+						<span>潮童鞋服</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav02.png">
+						<span>童鞋上新</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav01.png">
+						<span>潮流玩具</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav03.png">
+						<span>奶粉辅食</span>
+					</div>
+					<div class="nav-tab">
+						<img src="img/nav07.png">
+						<span>儿童玩具</span>
+					</div>
+				</div>
+				<div class="main-two jinji">
+					<div class="two-text">的色特惠专区</div>
+					<!--<img src="img/you-hui.png" />-->
+				</div>
+				<div class="main-three">
+
+				</div>
+				<div class="main-two dese">
+					<div class="two-text">精品超值专区</div>
+					<img src="img/you-hui.png" />
+				</div>
+				<div class="main-box">
+
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="bottom-box shouye">
+					<img src="img/shouye.png" />
+					<div class="bottom-news bottom-text">首页</div>
+				</div>
+				<div class="bottom-box fenlei">
+					<img src="img/fenlei 2.png" />
+					<div class="bottom-news">全部分类</div>
+				</div>
+				<div class="bottom-box gouwuche">
+					<img src="img/gouwudai.png" />
+					<div class="bottom-news">购物车</div>
+				</div>
+				<div class="bottom-box wode">
+					<img src="img/wode.png" />
+					<div class="bottom-news">会员中心</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			window.removeEventListener('popstate', this.forbidBack, false);
+			$('.news').click(function() {
+				mui.openWindow({
+					url: 'xiaoxi.html',
+					id: 'xiaoxi'
+				})
+			})
+			$('.nav').click(function() {
+				mui.openWindow({
+					url: 'fenlei.html',
+					id: 'fenlei'
+				})
+			})
+			function plusReady() {
+				plus.navigator.setStatusBarBackground('#b91c24');
+				if (localStorage.getItem('myid') == undefined || localStorage.getItem('myid') == null) {
+					mui.openWindow({
+						url: 'denglu.html',
+						id: 'denglu'
+					})
+				}
+				plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/getVersion",
+						dataType: 'json',
+						success: function(res) {
+							if (res.data.msdVuVersion != inf.version) {
+								//								版本更新
+								plus.nativeUI.toast("正在为您更新资源~");
+								plus.downloader.createDownload(myurl + res.data.msdVuUrl, {
+									filename: "_doc/update/"
+								}, function(d, status) {
+									if (status == 200) {
+										plus.runtime.install(d.filename, {}, function() {
+											plus.nativeUI.alert("应用资源更新完成！点击重启！", function() {
+												plus.runtime.restart();
+											});
+										}, function(e) {
+											alert("安装更新包失败[" + e.code + "]：" + e.message);
+										});
+									} else {
+										plus.nativeUI.closeWaiting();
+										alert("下载更新包失败！");
+									}
+								}).start();
+							}
+						},
+						error: function(err) {
+							alert(JSON.stringify(err))
+						}
+					});
+				});
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			} 
+			//获取轮播图
+			$.ajax({
+				type: "post",
+				url: myurl + "/commodity/querySmCommodityBanner",
+				async: true,
+				dataType: 'json',
+				success: function(res) {
+					if (res.status == 200) {
+						for (var i in res.data) {
+							$('.swiper-wrapper').append(
+								`
+								<div class="swiper-slide">
+									<img src="${myurl + res.data[i].smCoDefaultImg}" />
+								</div>
+							`
+							)
+						}
+						var swiper = new Swiper('.swiper-container', {
+							pagination: {
+								el: '.swiper-pagination'
+							},
+							autoplay:{
+								 delay: 2000
+							},
+							loop:true
+						});
+
+					} else {
+						alert(res.msg)
+					}
+				},
+				error: function(err) {
+					//					alert("网络连接失败，请稍后重试")
+				}
+			});
+			//获取晋级专区
+			$.ajax({
+				type: "post",
+				url: myurl + "/commodity/querySmCommodityUpgradeMore",
+				async: true,
+				dataType: 'json',
+				data: {
+					smGradeRuleId: localStorage.getItem('dengji')
+				},
+				success: function(res) {
+					for (var i in res.data) {
+						if (i < 1) {
+							$(".main-three").append(
+								`
+	            				<div class="three-box jinji" myid='${res.data[i].smCommodityId}'>
+									<img src="${myurl + res.data[i].smCoDefaultImg}" />
+									<div class="three">
+										<div class="three-text">${res.data[i].smCoName}</div>
+										<div class="three-hezi">
+											<div class="three-news">
+												<!-- ¥ ${Math.ceil(res.data[i].smCoDefaultPrice)} -->
+												¥69
+												<span class='oldprice'>
+													¥ ${res.data[i].smCoDiscount==null?'299':res.data[i].smCoDiscount==null}
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+            				`
+							)
+						}
+					}
+				},
+				error: function(res) {
+					//					alert("网络连接失败，请稍后重试")
+				}
+			});
+			//获取的色专区
+			$.ajax({
+				type: "post",
+				url: myurl + "/commodity/querySmCommodityPojo",
+				async: true,
+				dataType: 'json',
+				data: {
+					smGradeRuleId: localStorage.getItem('dengji')
+				},
+				success: function(res) {
+					if (res.status == 200) {
+						for (var i in res.data) {
+							$(".main-box").append(
+								`
+								<div class="main-four" myid='${res.data[i].smCommodityId}'>
+									<div class="four-lift">
+										<img src="${myurl + res.data[i].smCoDefaultImg}" />
+									</div>
+									<div class="four-right">
+										<div class="four-text">${res.data[i].smCoName}</div>
+										<div class="four-box">
+											<div class="four-news">
+											¥ ${Math.ceil(res.data[i].smCoDefaultPrice)}
+											<span class='oldprice'>¥ ${res.data[i].smCoDiscount}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							`
+							)
+						}
+					} else {
+						alert(res.msg)
+					}
+				},
+				error: function(err) {
+					//					alert("网络连接失败，请稍后重试")
+				}
+			});
+			//跳转页面-商品详情
+			$(".main").on('click', '.three-box', function() {
+				localStorage.setItem('shangpinid', $(this).attr('myid'))
+				mui.plusReady(function() {
+					var che = plus.webview.getWebviewById('shangpinxiangqing')
+					mui.fire(che, 'myajax')
+				})
+				mui.openWindow({
+					url: 'shangpinxiangqing.html',
+					id: 'shangpinxiangqing'
+				})
+			})
+			$(".main").on('click', '.main-four', function() {
+				localStorage.setItem('shangpinid', $(this).attr('myid'))
+				mui.plusReady(function() {
+					var che = plus.webview.getWebviewById('shangpinxiangqing')
+					mui.fire(che, 'myajax')
+				})
+				mui.openWindow({
+					url: 'shangpinxiangqing.html',
+					id: 'shangpinxiangqing'
+				})
+			})
+			//跳转页面-的色列表
+			$(".dese").click(function() {
+				mui.openWindow({
+					url: 'deseliebiao.html',
+					id: 'deseliebiao'
+				})
+			})
+			//跳转页面-分类
+			$(".fenlei").click(function() {
+				mui.openWindow({
+					url: 'fenlei.html',
+					id: 'fenlei'
+				})
+			})
+
+			//跳转页面-购物车
+			$(".gouwuche").click(function() {
+				mui.openWindow({
+					url: 'gouwuche.html',
+					id: 'gouwuche'
+				})
+			})
+			//跳转页面-我的
+			$(".wode").click(function() {
+				mui.openWindow({
+					url: 'wode.html',
+					id: 'wode'
+				})
+			})
+		})
+	</script>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/dingdanxiangqing0.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-cebian mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">订单详情</div>
+				<div class="header-cebian"></div>
+			</div>
+			<div class="main">
+				<div class="main-one">
+					
+				</div>
+				<div class="main-box">
+					<div class="box-top">
+						<div class="box-text">订单编号: <span class="orderid"></span></div>
+					</div>
+					
+				</div>
+				<div class="main-two">
+					<div class="two-text">订单运费:</div>
+					<div class="two-news">￥<span class="smOrFreight"></span></div>
+				</div>
+				<div class="main-two">
+					<div class="two-text">订单价格:</div>
+					<div class="two-news">￥<span class="smOrPrice"></span></div>
+				</div>
+				<div class="main-three">
+					<div class="three-text">备注：</div>
+					<input type="text" value="请尽快上门" readonly="readonly" />
+				</div>
+				<div class="main-three smOrRefundReason">
+					<div class="three-text">退款原因：</div>
+					<input type="text" value="请尽快上门" readonly="readonly"/>
+				</div>
+				<div class="main-three smOrReasonRefusal">
+					<div class="three-text">商家拒绝原因：</div>
+					<input type="text" value="请尽快上门" readonly="readonly"/>
+				</div>
+				<div class="wuliu">
+					<div class="three-text">物流信息：</div>
+					<div class="wumain">
+						
+					</div>
+				</div>
+			</div>
+			<!--<div class="bottom">
+				<div class="bottom-text">取消订单</div>
+				<div class="bottom-word"></div>
+				<div class="bottom-news">联系师傅</div>
+				<div class="bottom-news">完成订单</div>
+			</div>-->
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				type: "post",
+				url: myurl + "/commodity/querySmOrderDetails",
+				async: true,
+				data:{
+					smOrderId:localStorage.getItem('orderid')
+				},
+				dataTpe: 'json',
+				success: function(res) {
+					if(res.status = 200) {
+						$('.orderid').html(localStorage.getItem('orderid'))
+						$('.main-one').append(`
+								<div class="one-box">
+									<div class="one-text">订单地址：</div>
+									<div class="one-text">${res.data.smOrAddressDetails}</div>
+								</div>
+								<div class="one-hezi">
+									<div class="one-text">联系人：${res.data.smOrAddressName}</div>
+									<div class="one-text">${res.data.smOrAddressPhone}</div>
+								</div>
+						`)
+						$('input').val(res.data.smOrRemarke)
+//						
+						for (var i in res.data.smOrderDetail) {
+							$('.main-box').append(`
+								<div class="box-box">
+									<div class="box-left">
+										<img src="${myurl + res.data.smOrderDetail[i].smOdUpdateName}" class="smCoDefaultImg"/>
+									</div>
+									<div class="box-content">
+										<div class="box-above smCoName">${res.data.smOrderDetail[i].smOdCreateName}</div>
+										<div class="box-below">
+											<!--<div class="below-text">总价</div>-->
+											<div class="below-box smOrNum">
+												x ${res.data.smOrderDetail[i].smOdNum}
+											</div>
+										</div>
+									</div>
+								</div>	
+							`)
+						}
+						$('.smOrPrice').html(res.data.smOrPrice)
+						$('.smOrFreight').html(res.data.smOrFreight)
+						if(res.data.smOrRefundReason!=null){
+							$('.smOrRefundReason input').val(res.data[0].smOrRefundReason)
+						}else{
+							$('.smOrRefundReason').hide()
+						}
+						if(res.data.smOrReasonRefusal!=null){
+							$('.smOrReasonRefusal input').val(res.data[0].smOrReasonRefusal)
+						}else{
+							$('.smOrReasonRefusal').hide()
+						}
+						if(res.data.smOrUpdateName!='[]'){
+							var myjson=JSON.parse(res.data.smOrUpdateName)
+							for (var i in myjson) {
+								$('.wumain').append(`<p>${myjson[i].AcceptStation + ' ' + myjson[i].AcceptTime}</p>`)
+							}
+							
+						}else{
+							$('.wuliu').hide()
+						}
+					} else {
+						alert(res.msg)
+					}
+				},
+				error: function(err) {
+					alert("网络连接失败，请稍后重试")
+				}
+			});
+		})
+	</script>
+
+</html>

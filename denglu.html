@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/denglu.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<!--头-->
+			<div class="header">
+				<div class="header-cebian"></div>
+				<div class="header-text">登录</div>
+				<div class="header-cebian"></div>
+			</div>
+			<!--中间主体-->
+			<div class="main">
+				<div class="main-one">
+					<input type="text" placeholder="请输入手机号" class="phone shouji" />
+				</div>
+				<div class="main-one">
+					<input type="password" placeholder="请输入密码" class="phone mima" />
+				</div>
+				<div class="main-two">
+					<div class="two-text">登录</div>
+				</div>
+				<div class="main-three ">
+					<div class="three-text zhcue">注册</div>
+					<div class="three-text wangji">忘记密码？ </div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				var first = null
+				$(document).ready(function() {
+					if(window.history && window.history.pushState) {
+						$(window).on('popstate', function() {
+							window.history.pushState('forward', null, '#');
+							window.history.forward(1);
+							if(first == null) {
+								first = new Date().getTime();
+								plus.nativeUI.toast('再次点击退出app')
+								setTimeout(function() {
+									first = null;
+								}, 1000);
+							} else {
+								if(new Date().getTime() - first < 1000) {
+									plus.runtime.quit();
+								}
+							}
+						});
+					}
+				});
+				$(".main-two").click(function() {
+//					plus.nativeUI.showWaiting()
+					var shouji = $(".shouji").val()
+					var mima = $(".mima").val()
+					if(shouji == '') {
+						alert("手机号不能为空")
+						return
+					}
+					if(mima == '') {
+						alert("手机号不能为空")
+						return
+					}
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/querySmUserLogin",
+						async: true,
+						dataType: 'json',
+						data: {
+							phone: shouji,
+							pwd: mima
+						},
+						success: function(res) {
+//							plus.nativeUI.closeWaiting()
+							if(res.status == 200) {
+								localStorage.setItem('myid', res.data.smUsId) //id
+								localStorage.setItem('phone', res.data.smUsPhone) //手机号码
+								localStorage.setItem('Password', res.data.smUsPassword) //密码
+								localStorage.setItem('name', res.data.smUsNickname) //昵称
+								localStorage.setItem('Sex', res.data.smUsSex) //性别
+								localStorage.setItem('AliCode', res.data.smUsAliCode) //支付宝账号
+								localStorage.setItem('zhenshixingming', res.data.smUsAliName) //真实姓名
+								localStorage.setItem('Code', res.data.smUsWechatCode) //微信账号
+								localStorage.setItem('weixinxingming', res.data.smUsWechatName) //微信真实姓名
+								localStorage.setItem('fenxiaoshang', res.data.smUsIsDistribution) //是否分销商
+								localStorage.setItem('dengji', res.data.smGradeRuleId) //代理等级ID
+								localStorage.setItem('smUsHeadimg', res.data.smUsHeadimg) //头像
+								localStorage.setItem('smCashPassword', res.data.smCashPassword) //提现密码
+								localStorage.setItem('smUsUpdateName', res.data.smUsUpdateName) //头像
+								localStorage.setItem('smUsReferralCode', res.data.smUsReferralCode) //分享吗
+								mui.plusReady(function() {
+									plus.runtime.restart();
+								})
+							} else {
+								alert(res.msg)
+							}
+						},
+						error: function(err) {
+							plus.nativeUI.closeWaiting()
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+				})
+				$(".zhcue").click(function() {
+					mui.openWindow({
+						url: 'zhuce.html',
+						id: 'zhuce'
+
+					})
+				})
+				$(".wangji").click(function() {
+					mui.openWindow({
+						url: 'wlogin.html',
+						id: 'wlogin'
+
+					})
+				})
+			})
+		</script>
+	</body>
+
+</html>

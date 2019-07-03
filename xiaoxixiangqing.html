@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/xiaoxixiangqing.css"/>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-cebian mui-action-back">
+					<img src="img/youjian.png"/>
+				</div>
+				<div class="header-text" style="font-size: .3rem;">消息详情</div>
+				<div class="header-cebian"></div>
+			</div>
+			<div class="main">
+				<div class="main-three">
+					<div class="three-text">{{neirong}}</div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var vue = new Vue({
+			el: '.wrapper',
+			data: {
+				pingjiadata: [],
+				neirong:localStorage.getItem('xiaoxineirong')
+			},
+			methods: {
+				myajax: function() {
+					var that = this
+					//					获取商品评价
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/querySmMessageDetail",
+						async: true,
+						dataType: 'json',
+						data: {
+							smUserId: localStorage.getItem('myid')
+						},
+						success: function(res) {
+							if(res.status == 200) {
+								that.pingjiadata = res.data
+							} else {
+								alert(res.msg)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+				}
+			},
+			mounted: function() {
+//				this.myajax()
+			}
+		})
+	</script>
+</html>

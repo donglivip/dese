@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/lingqujilu.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">领取</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				type: "post",
+				url: myurl + '/commodity/querySmCollectionRecordPojoByUserId',
+				async: true,
+				data: {
+					smUserId: localStorage.getItem('myid')
+				},
+				dataType: 'json',
+				success: function(res) {
+					if(res.status == 200) {
+						for(var i in res.data) {
+							$('.main').append(`
+								<div class="main-box">
+									<div class="main-top">领取时间 : ${res.data[i].smCoShouldReceiveTimeString}</div>
+									<div class="main-content">
+										<div class="content-lift">
+											<img src="${myurl + res.data[i].smCoDefaultImg}" />
+										</div>
+										<div class="content-right">
+											<div class="content-text">${res.data[i].smCoName}</div>
+											<div class="content-news">第${res.data[i].smCoSecond}次领取</div>
+										</div>
+									</div>
+									<div class="main-bottom" >
+										<div class="main-news" style='display:${res.data[i].smCoIsReceive==1?"block":"none"}'>已领取</div>
+										<div class="main-text ling" style='display:${res.data[i].smCoIsReceive==2?"block":"none"}' myid='${res.data[i].smCommodityId}' mytime='${res.data[i].smCoShouldReceiveTimeString}' myname='${res.data[i].smCoName}' smCollectionRecordId='${res.data[i].smCollectionRecordId}' >领取</div>
+									</div>
+								</div>
+							`)
+						}
+					} else {
+						alert(res.msg)
+					}
+				},
+				error: function(err) {
+					alert("网络连接失败，请稍后重试")
+				}
+			});
+			$('.main').on('click', '.ling', function() {
+				var id = $(this).attr('myid')
+				localStorage.setItem('smCollectionRecordId',$(this).attr('smCollectionRecordId'))
+				var time = parseInt($(this).attr('mytime').substr(5, 2))
+				var myDate = new Date()
+				var month = myDate.getMonth() + 1
+				if(month != time) {
+					plus.nativeUI.toast('产品已过期或者未到领取时间！')
+				} else {
+					var shopdata = []
+					shopdata.push({
+						smCommodityId: id,
+						smOdSpecif: '任意',
+						smOdNum: 1,
+						smOdPrice: 0,
+						shopname: $(this).attr('myname'),
+						smOdCreateName: 1
+					})
+					localStorage.setItem('shopdata', JSON.stringify(shopdata))
+					mui.openWindow({
+						url: 'tijiaolingqu.html',
+						id: 'tijiaolingqu'
+					})
+				}
+			})
+		})
+	</script>
+
+</html>

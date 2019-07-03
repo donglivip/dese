@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/wode.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="main">
+				<div class="header">
+					<div class="header-top shezhi">
+						<img src="img/shezhi.png" />
+					</div>
+					<div class="header-bottom">
+						<div class="header-lift">
+							<img src="img/945421.jpg" class="touxaing" /><br />
+							<strong></strong>
+						</div>
+						<div class="header-right">
+							<div class="header-text name">新用户</div>
+							<div class="header-news"><span class="leven">123456</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="main-one">
+					<div class="one-top">
+						<div class="one-text">我的订单</div>
+						<div class="one-news">查看全部订单</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="one-bottom">
+						<div class="one-box">
+							<img src="img/tuandui (3).png" />
+							<div class="one-word">待付款</div>
+						</div>
+						<div class="one-box">
+							<img src="img/daifahuo.png" />
+							<div class="one-word">待发货</div>
+						</div>
+						<div class="one-box">
+							<img src="img/daishouhuo.png" />
+							<div class="one-word">待收货</div>
+						</div>
+						<div class="one-box">
+							<img src="img/xiaoxi.png" />
+							<div class="one-word">评价</div>
+						</div>
+						<div class="one-box">
+							<img src="img/tuikuan.png" />
+							<div class="one-word">退货退款</div>
+						</div>
+					</div>
+				</div>
+				<div class="main-two">
+					<div class="two-box danshu">
+						<img src="img/daili.png" />
+						<div class="two-text">代理单数</div>
+					</div>
+					<div class="two-box shouru">
+						<img src="img/shouru.png" />
+						<div class="two-text">我的收入</div>
+					</div>
+					<div class="two-box kehu">
+						<img src="img/kehu.png" />
+						<div class="two-text">我的客户</div>
+					</div>
+					<div class="two-box xiaoshou">
+						<img src="img/shuliang.png" />
+						<div class="two-text">销售数量</div>
+					</div>
+				</div>
+				<div class="main-three">
+					<div class="three-box dengji">
+						<div class="three-text">刷新等级</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="three-box dizhi">
+						<div class="three-text">我的地址</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="three-box yue">
+						<div class="three-text">账户余额</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="three-box jumpjifen">
+						<div class="three-text ">商城积分</div>
+						<div class="three-news jifen">0</div>
+					</div>
+					<div class="three-box lingqu">
+						<div class="three-text">领取产品</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="three-box erweima">
+						<div class="three-text">我的二维码</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="three-box kefu">
+						<div class="three-text">在线客服</div>
+						<img src="img/you-hui.png" />
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="bottom-box shouye">
+					<img src="img/shouye 2.png" />
+					<div class="bottom-news">首页</div>
+				</div>
+				<div class="bottom-box fenlei">
+					<img src="img/fenlei 2.png" />
+					<div class="bottom-news">全部分类</div>
+				</div>
+				<div class="bottom-box gouwuche">
+					<img src="img/gouwudai.png" />
+					<div class="bottom-news">购物车</div>
+				</div>
+				<div class="bottom-box wode">
+					<img src="img/Shape.png" />
+					<div class="bottom-text">会员中心</div>
+				</div>
+			</div>
+			<div id="erweima">
+				<div class="erweima-inner" >
+					<div class="myheader">
+						<div class="header-cebian">
+							<img src="img/youjian.png" style="height: .4rem;"/>
+						</div>
+						<div class="header-text">我的二维码</div>
+						<div class="header-cebian"></div>
+					</div>
+					<strong class="tui"></strong>
+					<div class="out-box">
+						<div id="output"></div>
+					</div>
+					<p>赶快截图分享给好友吧</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			jQuery('#output').qrcode(myurl + "/user/share?sharecode=" + localStorage.getItem('phone') + "");
+			$('strong').html('推广码:' + localStorage.getItem('phone'))
+			if(localStorage.getItem('dengji')==0){
+				$('.erweima').hide()
+			}
+			mui('.wrapper').on('tap', '.erweima', function() { 
+				$('#erweima').css('display', 'flex') 
+			})
+			mui('.wrapper').on('tap', '.myheader', function() { 
+				$('#erweima').hide()
+			})
+			mui('.wrapper').on('tap', '.erweima-inner', function() { 
+				var Url2 = localStorage.getItem('phone');
+				var oInput = document.createElement('input');
+				oInput.value = Url2;
+				document.body.appendChild(oInput);
+				oInput.select(); // 选择对象
+				document.execCommand("Copy"); // 执行浏览器复制命令
+				oInput.className = 'oInput';
+				oInput.style.display = 'none';
+				plus.nativeUI.toast('分享码已复制！');
+				var e = arguments.callee.caller.arguments[0] || event; //若省略此句，下面的e改为event，IE运行可以，但是其他浏览器就不兼容
+				if(e && e.stopPropagation) {
+					// this code is for Mozilla and Opera
+					e.stopPropagation();
+				} else if(window.event) {
+					// this code is for IE
+					window.event.cancelBubble = true;
+				}
+			})
+			mui('.wrapper').on('tap', '.dengji', function() { 
+				plus.webview.getWebviewById('wode').reload()
+			})
+			//			替换头像
+			if(localStorage.getItem('smUsHeadimg') != 'null') {
+				$('.touxaing').attr('src', myurl + localStorage.getItem('smUsHeadimg'))
+			}
+			//			替换名字
+			if(localStorage.getItem('name') != 'null') {
+				$('.name').html(localStorage.getItem('name'))
+			}
+			$('.leven').html(localStorage.getItem('smUsUpdateName'))
+
+			function myajax() {
+				mui.plusReady(function() {
+					plus.nativeUI.showWaiting()
+				})
+
+				$.ajax({
+					type: "post",
+					url: myurl + "/smUser/querySmUserWallet",
+					async: true,
+					dataType: 'json',
+					data: {
+						smUserId: localStorage.getItem('myid')
+					},
+					success: function(res) {
+						mui.plusReady(function() {
+							plus.nativeUI.closeWaiting()
+						})
+						if(res.status == 200) {
+							$(".jifen").html(res.data.smUwIntegral)
+							localStorage.setItem('smUsUpdateName', res.data.smUwCreateName)
+							localStorage.setItem('dengji', res.data.smUwUpdateName)
+						} else {
+							alert(res.data)
+						}
+					},
+					error: function(err) {
+						mui.plusReady(function() {
+							plus.nativeUI.closeWaiting()
+						})
+					}
+				});
+				mui.plusReady(function() {
+					plus.nativeUI.closeWaiting()
+				})
+			}
+			myajax()
+			mui('.wrapper').on('tap', '.yue', function() { 
+				mui.openWindow({        
+					url: "zhanghuyue.html",
+					createNew: true   
+				}) 
+			})
+			mui('.wrapper').on('tap', '.main-one', function() { 
+				mui.openWindow({        
+					url: "wodedingdan.html"     
+				}) 
+			})
+			//跳转页面-设置
+			mui('.wrapper').on('tap', '.shezhi', function() { 
+				mui.openWindow({        
+					url: "shezhi.html"     
+				}) 
+			})
+			//跳转页面-分类
+			mui('.wrapper').on('tap', '.fenlei', function() { 
+				mui.openWindow({        
+					url: "fenlei.html"     
+				}) 
+			})
+			//跳转页面-首页
+			mui('.wrapper').on('tap', '.shouye', function() { 
+				mui.openWindow({        
+					url: "index.html"     
+				}) 
+			})
+			//跳转页面-购物车
+			mui('.wrapper').on('tap', '.gouwuche', function() { 
+				mui.openWindow({        
+					url: "gouwuche.html"     
+				}) 
+			})
+			//跳转页面-我的单数
+			mui('.wrapper').on('tap', '.danshu', function() { 
+				mui.openWindow({        
+					url: "wodedanshu.html"     
+				}) 
+			})
+			//跳转页面-销售总数
+			mui('.wrapper').on('tap', '.xiaoshou', function() { 
+				mui.openWindow({        
+					url: "xiaoshouzongshu.html"     
+				}) 
+			})
+			//跳转页面-今日收入
+			mui('.wrapper').on('tap', '.shouru', function() { 
+				mui.openWindow({        
+					url: "jinrishouru.html"     
+				}) 
+			})
+			//跳转页面-我的客户
+			mui('.wrapper').on('tap', '.kehu', function() { 
+				mui.openWindow({        
+					url: "wodekehu.html"     
+				}) 
+			})
+			//跳转页面-我的客户
+			mui('.wrapper').on('tap', '.lingqu', function() { 
+				mui.openWindow({        
+					url: "lingqujilu.html"     
+				}) 
+			})
+			//			跳转页面-我的地址
+			mui('.wrapper').on('tap', '.dizhi', function() { 
+				mui.openWindow({        
+					url: "wodedizhi.html"     
+				}) 
+			})
+			mui('.wrapper').on('tap', '.kefu', function() { 
+				window.location.href='http://wpa.qq.com/msgrd?v=3&uin=2446504915&site=qq&menu=yes'
+			})
+			//		从商城积分--跳转页面到积分明细
+			mui('.wrapper').on('tap', '.jumpjifen', function() { 
+				mui.openWindow({        
+					url: "jifenmingxi.html"     
+				}) 
+			})
+		})
+	</script>
+
+</html>

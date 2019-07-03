@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/shangpinliebiao.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">商品列表</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+				<div class="main-one" v-for="val in navadata" @click="openshop(val.smCommodityId)">
+					<div class="one-lift">
+						<img :src="myurl + val.smCoDefaultImg" />
+					</div>
+					<div class="one-right">
+						<div class="one-text">{{val.smCoName}}</div>
+						<div class="one-news">¥ {{val.smCoDefaultPrice}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'.wrapper',
+			data: {
+				navadata:[]
+			},
+			methods: {
+				opennew:function(target){
+					mui.openWindow({
+						url: ''+target+'.html',
+						id: target
+					})
+				},
+				openshop:function(id){
+					localStorage.setItem('shangpinid',id)
+					this.opennew('shangpinxiangqing')
+				},
+				myajax: function() {
+					//					获取一级分类
+					var that = this
+					$.ajax({
+						type: "post",
+						url: myurl + "/commodity/querySmCommodityByTypeId",
+						async: true,
+						data:{
+							smCommodityTypeId:localStorage.getItem('erjiid')
+						},
+						dataType: 'json',
+						success: function(res) {
+							if(res.status == 200) {
+								that.navadata = res.data
+							} else {
+								alert(res.data)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+				}
+			},
+			mounted: function() {
+				this.myajax()
+			}
+		})
+	</script>
+
+</html>

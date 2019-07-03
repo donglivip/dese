@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/xiaoxi.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">消息</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+				<div class="two-top" v-for="val in pingjiadata" @click="opennew(val.smMessageDetailId,val.smMdContent)">
+					<div class="two-text">{{val.smMdContent}}</div>
+					<img src="img/you-hui.png" />
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var vue = new Vue({
+			el: '.wrapper',
+			data: {
+				pingjiadata: [],
+			},
+			methods: {
+				opennew:function(id,content){
+					localStorage.setItem('xiaoxineirong',content)
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/updateSmMessageDetail",
+						async: true,
+						dataType: 'json',
+						data: {
+							smMessageDetailId: id,
+							smMdIsRead:1
+						},
+						success: function(res) {
+							if(res.status == 200) {
+								mui.openWindow({
+									url:'xiaoxixiangqing.html',
+									id:'xiaoxixiangqing'
+								})
+							} else {
+								alert(res.msg)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+					
+				},
+				myajax: function() {
+					var that = this
+					//					获取商品评价
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/querySmMessageDetail",
+						async: true,
+						dataType: 'json',
+						data: {
+							smUserId: localStorage.getItem('myid')
+						},
+						success: function(res) {
+							if(res.status == 200) {
+								that.pingjiadata = res.data
+							} else {
+								alert(res.msg)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+				}
+			},
+			mounted: function() {
+				this.myajax()
+			}
+		})
+	</script>
+
+</html>
