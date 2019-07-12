@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/jinrishouru.css" />
+	</head>
+	<style type="text/css">
+		.main {
+			height: calc(100% - .96rem);
+			overflow-y: scroll;
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">我的客户</div>
+				<div class="header-aside">
+					<div class="ziti" style="font-size: .22rem;white-space: nowrap;padding-right: .3rem;">粉丝明细</div>
+				</div>
+			</div>
+			<div class="main">
+				<div class="main-one">
+
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				type: "post",
+				url: myurl + "/commodity/querySmUserByGradeId",
+				async: true,
+				data: {
+					smUserId: localStorage.getItem('myid')
+				},
+				dataType: 'json',
+				success: function(res) {
+					if (res.status == 200) {
+						$('.main-one').html('')
+						for (var i in res.data.listCust) {
+							$('.main-one').append(
+								`
+									<div class="main-box">
+										<div class="box-top">
+											<div class="box-text">${res.data.listCust[i].name}</div>
+										</div>
+										<div class="box-bottom">
+											<div class="box-news tuandui">${res.data.listCust[i].num}</div>
+										</div>
+									</div>
+								`
+							)
+						}
+					} else {
+						alert(res.msg)
+					}
+				},
+				error: function(err) {
+					alert("网络连接失败，请稍后重试")
+				}
+			});
+			$(".ziti").click(function(){
+				mui.openWindow({
+					url:'fensi.html',
+					id:'fensi'
+				})
+			})
+		})
+	</script>
+</html>

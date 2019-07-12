@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/dese/!svn/ver/2/dese/unpackage
+END
+.confusion
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/dese/!svn/ver/2/dese/unpackage/.confusion
+END
+.dependencies
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/dese/!svn/ver/2/dese/unpackage/.dependencies
+END
+.confirmed_dependencies
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/dese/!svn/ver/6/dese/unpackage/.confirmed_dependencies
+END

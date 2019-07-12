@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/fenlei.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside"></div>
+				<div class="header-text">分类</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+				<div class="main-lift">
+					<div class="lift-text" v-for="val in navadata" :class="navid==val.id?'selection':''" @click="havetwo(val.id)">{{val.name}}</div>
+				</div>
+				<div class="main-right">
+					<div class="right-box">
+						<div class="right-top" v-for="val in childdata">
+							<div class="right-text" @click="opentwo(val.id)">{{val.name}}</div>
+							<div class="right-bottom">
+								<div class="right-status" v-for="tab in val.threeSmCommodity" @click="openshop(tab.smCommodityId)">
+									<img :src="myurl + tab.smCoDefaultImg" />
+									<div class="right-news">{{tab.smCoName}}</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+               <div class="bottom-box" @click="opennew('index')">
+               	   <img src="img/shouye 2.png"/>
+               	   <div class="bottom-news">首页</div>
+               </div>
+               <div class="bottom-box">
+               	   <img src="img/fenlei.png"/>
+               	   <div class="bottom-text">全部分类</div>
+               </div>
+                <div class="bottom-box" @click="opennew('gouwuche')">
+               	   <img src="img/gouwudai.png"/>
+               	   <div class="bottom-news">购物车</div>
+               </div>
+                <div class="bottom-box" @click="opennew('wode')">
+               	   <img src="img/wode.png"/>
+               	   <div class="bottom-news">会员中心</div>
+               </div>              
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var vue=new Vue({
+			el:'.wrapper',
+			data:{
+				navadata:[],
+				childdata:[],
+				navid:[]
+			},
+			methods:{
+				opentwo:function(id){
+					localStorage.setItem('erjiid',id)
+					this.opennew('shangpinliebiao')
+				},
+				openshop:function(id){
+					localStorage.setItem('shangpinid',id)
+					this.opennew('shangpinxiangqing')
+				},
+				havetwo:function(id){
+//					获取二级分类
+					var that=this
+					that.navid=id
+					$.ajax({
+						type: "post",
+						url: myurl + "/commodity/querySmCommodityTypeTwo",
+						async: true,
+						data:{
+							id:that.navid
+						},
+						dataType: 'json',
+						success: function(res) {
+							if(res.status == 200) {
+								that.childdata = res.data
+							} else {
+								alert(res.data)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});					
+				},
+				myajax:function(){
+//					获取一级分类
+					var that=this
+					$.ajax({
+						type: "post",
+						url: myurl + "/commodity/querySmCommodityType",
+						async: true,
+						dataType: 'json',
+						success: function(res) {
+							if(res.status == 200) {
+								that.navadata = res.data
+								that.havetwo(res.data[0].id)
+							} else {
+								alert(res.data)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+				},
+				opennew:function(target){
+					mui.openWindow({
+						url: ''+target+'.html',
+						id: target
+					})
+				}
+			},
+			mounted:function(){
+				this.myajax()
+			}
+		})
+	</script>
+</html>

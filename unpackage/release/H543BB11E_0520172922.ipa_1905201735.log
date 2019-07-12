@@ -1,0 +1,33 @@
+[2019-05-20 17:35:53 CST] <Thread-26>  INFO: Logging to file: C:\Users\Shinelon\Documents\HBuilderProject\dese\unpackage\release\H543BB11E_0520172922.ipa_1905201735.log
+[2019-05-20 17:35:53 CST] <Thread-26>  INFO: Logging configured successfully.
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: iTMSTransporter : iTunes Store Transporter [1.9.8]
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: OS identifier: Windows 10 10.0 (amd64); jvm=25.171-b11; jre=1.8.0_171-b11
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Memory: [JVM] 79M free, 136M total, 1794M max [System] (Physical) 2804M free, 8069M total (Swap) 5735M free, 14183M total
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Upload mode selected.
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Examining the package at: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Ensuring that package has well formed metadata file...
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Gathering the list of valid files from the package ...
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Finished gathering the list of valid files from the package.
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Verify progress: Analyzing metadata (Step 2/?)
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Performing authentication of package 1464497140.itmsp ...
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: Verify progress: Analyzing metadata (Step 3/2)
+[2019-05-20 17:35:54 CST] <Thread-26>  INFO: id = 20190520173554-134
+[2019-05-20 17:35:55 CST] <Thread-26> ERROR: Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)
+[2019-05-20 17:35:55 CST] <Thread-26>  INFO: Verify progress: Operation failed (Step 2/2)
+
+
+
+Package Summary:
+ 
+1 package(s) were not uploaded because they had problems:
+	C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp - Error Messages:
+		Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)
+[2019-05-20 17:41:37 CST] <Thread-29> Cookie rejected [DSESSIONID="rp5epgrqv50rtc36egeqasqhj1p0hv68go682g1glgpa85s35hb", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:41 CST] <Thread-30> Cookie rejected [DSESSIONID="198mgv25odmts7jqvtlmvtlvs2rcl3mbb09s2paijh5ju0eost3b", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:42 CST] <Thread-31> Cookie rejected [DSESSIONID="140v4vcajfo6sat5hh5j76ele6nk8sss08buq9p764pvap35mt1n", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:44 CST] <Thread-32> Cookie rejected [DSESSIONID="9lo2c6htci1tb1eq1p80dpb9q9rbilom8556gq670a26liqsa0q", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:45 CST] <Thread-33> Cookie rejected [DSESSIONID="18u5qsknj9qplc7q8tjo7d6utr62pnhg28shta51utg61oc3sq21", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:47 CST] <Thread-34> Cookie rejected [DSESSIONID="1eu516a4qe9phts1k0lqvh8lujvfu163hjjtokv0on97s0dhhp05", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:48 CST] <Thread-35> Cookie rejected [DSESSIONID="1430mltsuf2hti4moub0v3g358ccvsmeo88b68bsrc2gq742jq4l", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:55 CST] <Thread-36> Cookie rejected [DSESSIONID="1369pduscfqctc410dn8pus3sgtb4i9umpht0pnue15rs9l8r3ju", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"
+[2019-05-20 17:41:56 CST] <Thread-37> Cookie rejected [DSESSIONID="1krsefjvfpc2vomh59movi8rui9lkee419q2ajv9ks5meed6uplc", version:0, domain:developer.apple.com, path:/, expiry:null] Illegal 'domain' attribute "developer.apple.com". Domain of origin: "developerservices2.apple.com"

@@ -1,0 +1,72 @@
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Logging to file: C:\Users\Shinelon\Documents\HBuilderProject\dese\unpackage\release\H543BB11E_0520172922.ipa_1905201756.log
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Logging configured successfully.
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: iTMSTransporter : iTunes Store Transporter [1.9.8]
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: OS identifier: Windows 10 10.0 (amd64); jvm=25.171-b11; jre=1.8.0_171-b11
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Memory: [JVM] 80M free, 122M total, 1794M max [System] (Physical) 2818M free, 8069M total (Swap) 5674M free, 14183M total
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Upload mode selected.
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Examining the package at: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Ensuring that package has well formed metadata file...
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Gathering the list of valid files from the package ...
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Finished gathering the list of valid files from the package.
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Verify progress: Analyzing metadata (Step 2/?)
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Performing authentication of package 1464497140.itmsp ...
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: Verify progress: Analyzing metadata (Step 3/2)
+[2019-05-20 17:56:50 CST] <Thread-46>  INFO: id = 20190520175650-855
+[2019-05-20 17:56:52 CST] <Thread-46>  INFO: id = 20190520175652-939
+[2019-05-20 17:56:59 CST] <Thread-46>  INFO: The list of files requested for upload by Apple is: [metadata.xml, 1464497140.ipa].  These are the files that will be uploaded.
+[2019-05-20 17:56:59 CST] <Thread-46>  INFO: Starting media analysis of assets
+[2019-05-20 17:56:59 CST] <Thread-46>  INFO: Verify progress: Adding asset to analyze: 1464497140.ipa (Step 4/3)
+[2019-05-20 17:56:59 CST] <Thread-46>  INFO: Asset media analysis has completed
+[2019-05-20 17:56:59 CST] <Thread-46>  INFO: id = 20190520175659-156
+[2019-05-20 17:57:13 CST] <Thread-46>  INFO: Verify progress: Validating assets (Step 5/3)
+[2019-05-20 17:57:13 CST] <Thread-46>  INFO: Verify progress: Validating assets (Step 6/3)
+[2019-05-20 17:57:13 CST] <Thread-46>  INFO: id = 20190520175713-419
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: The list of files requested for upload by Apple is: [metadata.xml, 1464497140.ipa].  These are the files that will be uploaded.
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Done performing authentication.
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: The asset replacement verification check is disabled.
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Checking the file size of the files: [1464497140.ipa]
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Done checking the file sizes.
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Checking the md5 checksum of the files: [1464497140.ipa]
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Done checking the md5 checksum.
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Preparing to upload package 1464497140.itmsp ...
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Starting to upload the package's files (1464497140.itmsp) ...
+[2019-05-20 17:57:39 CST] <Thread-46>  INFO: Attempting to connect to Apple's webDAV...
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Successfully connected to Apple's webDAV.
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Attempting to create the package's folder on Apple's webDAV: /6/MT8N46S76C/uploading/1464497140-20190520025726-037.itmsp/
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Successfully created/set the package's folder on Apple's webDAV.
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Determining which files should be uploaded ...
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Finished determining which files should be uploaded.
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Computing total size of files to upload ...
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Done computing total size of files to upload.
+[2019-05-20 17:57:40 CST] <Thread-46>  INFO: Starting upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp\1464497140.ipa ...
+[2019-05-20 17:58:42 CST] <Thread-46>  INFO:      File: 1464497140.ipa 10485760/24529314, 42% completed
+[2019-05-20 17:59:43 CST] <Thread-46>  INFO:      File: 1464497140.ipa 20971520/24529314, 85% completed
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO:      File: 1464497140.ipa 24529314/24529314, 100% completed
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO:   Successfully uploaded file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp\1464497140.ipa
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO: Package upload progress: 99% completed
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO: Finished upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp\1464497140.ipa.
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO: Starting upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp\metadata.xml ...
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO:      File: metadata.xml 521/521, 100% completed
+[2019-05-20 18:00:01 CST] <Thread-46>  INFO:   Successfully uploaded file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp\metadata.xml
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Package upload progress: 100% completed
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Finished upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp\metadata.xml.
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Gathering list of uploaded files from Apple's webDAV...
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Done gathering list of uploaded files from Apple's webDAV...
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Checking if any encryption/compression files are outdated locally ...
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Finished checking if any encryption/compression files are outdated locally.
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Confirming that the previously uploaded files were uploaded correctly ...
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Finished confirming that the previously uploaded files were uploaded correctly.
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Determining which files were not uploaded ...
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Finished determining which files were not uploaded.
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: Done performing upload.
+[2019-05-20 18:00:02 CST] <Thread-46>  INFO: id = 20190520180002-914
+[2019-05-20 18:00:05 CST] <Thread-46>  INFO: Done performing uploadDone notification to Apple.
+[2019-05-20 18:00:05 CST] <Thread-46>  INFO: The package: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp has been successfully uploaded.
+[2019-05-20 18:00:05 CST] <Thread-46>  INFO: Verify progress: Operation completed (Step 3/3)
+
+
+
+Package Summary:
+ 
+1 packages were uploaded successfully:
+	C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp

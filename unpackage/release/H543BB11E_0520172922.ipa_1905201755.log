@@ -1,0 +1,25 @@
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Logging to file: C:\Users\Shinelon\Documents\HBuilderProject\dese\unpackage\release\H543BB11E_0520172922.ipa_1905201755.log
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Logging configured successfully.
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: iTMSTransporter : iTunes Store Transporter [1.9.8]
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: OS identifier: Windows 10 10.0 (amd64); jvm=25.171-b11; jre=1.8.0_171-b11
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Memory: [JVM] 62M free, 120M total, 1794M max [System] (Physical) 2954M free, 8069M total (Swap) 5788M free, 14183M total
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Upload mode selected.
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Examining the package at: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Ensuring that package has well formed metadata file...
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Gathering the list of valid files from the package ...
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Finished gathering the list of valid files from the package.
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Verify progress: Analyzing metadata (Step 2/?)
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Performing authentication of package 1464497140.itmsp ...
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: Verify progress: Analyzing metadata (Step 3/2)
+[2019-05-20 17:55:53 CST] <Thread-43>  INFO: id = 20190520175553-596
+[2019-05-20 17:55:54 CST] <Thread-43> ERROR: Sign in with the app-specific password you generated. If you forgot the app-specific password or need to create a new one, go to appleid.apple.com (-22938)
+[2019-05-20 17:55:54 CST] <Thread-43>  INFO: Verify progress: Operation failed (Step 2/2)
+
+
+
+Package Summary:
+ 
+1 package(s) were not uploaded because they had problems:
+	C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp - Error Messages:
+		Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)
+		Sign in with the app-specific password you generated. If you forgot the app-specific password or need to create a new one, go to appleid.apple.com (-22938)

@@ -1,0 +1,88 @@
+*{padding: 0;margin: 0;}
+html,body,.wrapper{width: 100%;height: 100%;}
+.wrapper{
+	background: #F4F7FA ;
+}
+.header{
+	height: .96rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 .3rem ;
+	margin-bottom: .1rem;
+}
+.header-aside{
+	width: .3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.header-aside img{
+	height: .36rem;
+}
+.header-text{
+	font-size: .36rem;
+	color: #141414 ;
+}
+.main-box{
+	padding: 0 .3rem ;
+	background: #FFFFFF;
+}
+.main-top{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: .2rem 0;
+}
+.img-box{
+	height: 1rem;
+	width: 1rem;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.img-box img{
+	width: 100%;
+}
+.top-text{
+	font-size: .28rem;
+	color: #929292 ;
+	flex: 1;
+	margin-left: .4rem;
+}
+.youjian{
+	height: .36rem;
+}
+.main-content{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: .2rem 0;
+}
+.content-lift{
+	font-size: .28rem;
+	color: #929292 ;
+	width: 1.7rem;
+	margin-right: .6rem;
+}
+.content-text{
+	font-size: .28rem;
+	color: #272727 ;
+	flex: 1;
+}
+.main-content img{
+	height: .36rem;
+}
+input{
+	flex: 1;
+	border: 0;
+}
+select,option{border: 0;background: none;}
+.btn{position: fixed;left: 0;bottom: 0;height: .8rem;background: #c30e21;color: #ffffff;width: 100%;font-size: .3rem;text-align: center;line-height: .8rem;}
+
+
+
+
+
+
+

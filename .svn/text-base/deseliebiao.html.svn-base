@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/shangpinliebiao.css"/>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside back">
+					<img src="img/youjian.png"/>
+				</div>
+				<div class="header-text">的色列表</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+				
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$.ajax({
+				type:"post",
+				url:myurl+"/commodity/querySmCommodityPojo",
+				async:true,
+				dataTpe:'json',
+				data: {
+					smGradeRuleId: localStorage.getItem('dengji')
+				},
+				success:function(res){
+					if (res.status=200) {
+						for (var i in res.data) {
+							$(".main").append(`
+								<div class="main-one" myid=${res.data[i].smCommodityId}>
+									<div class="one-lift">
+										<img src="${myurl + res.data[i].smCoDefaultImg}"/>
+									</div>
+									<div class="one-right">
+										<div class="one-text">${res.data[i].smCoName}</div>
+										<div class="one-news">
+											¥ ${res.data[i].smCoDefaultPrice}
+											<span class='oldprice'>¥ ${res.data[i].smCoDiscount}</span>
+										</div>
+									</div>
+								</div>
+							`)
+						}
+					} else{
+						alert(res.msg)
+					}
+				},
+				error:function(err){
+					alert("网络连接失败，请稍后重试")
+				}
+			});
+			$(".main").on('click','.main-one',function(){
+				localStorage.setItem('shangpinid',$(this).attr('myid'))
+				mui.openWindow({
+					url:'shangpinxiangqing.html',
+					id:'shangpinxiangqing'
+				})
+			})
+			$(".back").click(function() {
+				mui.back()
+			})
+		})
+	</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/zhuce.css" />
+	</head>
+	<style type="text/css">
+		.header{margin: 0;}
+		.main{background: #FFFfff;padding:  .15rem;height: calc(100% - 1rem);overflow-y: scroll;}
+		.main p{font-size: 18px!important;line-height: .5rem!important;}
+	</style>
+	<body>
+		<div class="wrapper">
+			<!--头-->
+			<div class="header">
+				<div class="header-cebian">
+					<div class="header-cebian mui-action-back">
+						<img src="img/youjian.png" style="height: .4rem;" />
+					</div>
+				</div>
+				<div class="header-text">品牌代理人协议</div>
+				<div class="header-cebian"></div>
+			</div>
+			<!--中间主体-->
+			<div class="main">
+				<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">的色时代商城购买须知</span></span>
+</p>
+<p>
+    <span style=";font-family:Calibri;font-size:14px">&nbsp;</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">亲，您好！在看到这个须知的时候，您即将成为的色时代的经销商，享受使用购买及代理经销的权益。感谢每位家人对的色时代的支持，希望大家买的放心开心，用着安心，你们的支持就是我们最大的动力。购买前，请您仔细阅读以下内容：</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">关于价格</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">的色时代所有产品的代理价格，根据各位经销商的代理级别决定。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">关于产品质量及安全性</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">的色时代产品拥有专业的质量检测报告，对产品的质量安全作出严格保证。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">关于购买付款</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">的色时代商城采用最便捷的支付方式，后台支付可以选择微信、支付宝支付或者绑定银行卡支付。购买满</span>70<span style="font-family:宋体">元后可享受包邮政策（限中国大陆地区），未满</span><span style="font-family:Calibri">70</span><span style="font-family:宋体">元的，邮费自理。。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">每个月领取的产品不在包邮行列，每个账号领取时，均需提前支付相应邮费；</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">关于快递</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">快递一般</span>5-7<span style="font-family:宋体">天内送达，但因所在区域不同，运输速度会有一定差距，特别是比较偏远的地区。如果遇到恶劣天气、物流爆仓及法定节假日，可能会出现延迟耽搁现象。如因快递事宜发生不愉快，可与公司客服人员进行联系，以便更好的解决问题。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">关于产品的使用及功效说明</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">各位小伙伴在收到产品之后，可向经销商询问使用方法及注意事项。如出现一些异常状况，及时与公司技术人员联系；</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">关于退款及退换货</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">购买产品之后，如收到的产品存在任何损坏或不能使用的问题，请及时联系客服人员，工作人员会在</span>5<span style="font-family:宋体">个工作日内进行处理；以便更好的为您提供服务！</span></span>
+</p>
+<p>
+    <span style=";font-family:Calibri;font-size:14px">&nbsp;</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">感谢您的耐心阅读，现在可开始您的购物之旅啦，祝您购物愉快！</span></span>
+</p>
+<p>
+    <br/>
+</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.name').html(localStorage.getItem('name'))
+			$('.erweima').html(localStorage.getItem('smUsReferralCode'))
+			var mydate=new Date()
+			var tian=mydate.getFullYear()
+			var min=mydate.getMonth()+1
+			var hour=mydate.getDate()
+			$('.time').html(tian+'-'+min+'-'+hour)
+		})
+	</script>
+</html>

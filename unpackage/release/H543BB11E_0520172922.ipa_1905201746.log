@@ -1,0 +1,26 @@
+[2019-05-20 17:46:29 CST] <Thread-39>  INFO: Logging to file: C:\Users\Shinelon\Documents\HBuilderProject\dese\unpackage\release\H543BB11E_0520172922.ipa_1905201746.log
+[2019-05-20 17:46:29 CST] <Thread-39>  INFO: Logging configured successfully.
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: iTMSTransporter : iTunes Store Transporter [1.9.8]
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: OS identifier: Windows 10 10.0 (amd64); jvm=25.171-b11; jre=1.8.0_171-b11
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Memory: [JVM] 92M free, 132M total, 1794M max [System] (Physical) 2737M free, 8069M total (Swap) 5513M free, 14183M total
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Upload mode selected.
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Examining the package at: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Ensuring that package has well formed metadata file...
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Gathering the list of valid files from the package ...
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Finished gathering the list of valid files from the package.
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Verify progress: Analyzing metadata (Step 2/?)
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Performing authentication of package 1464497140.itmsp ...
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: Verify progress: Analyzing metadata (Step 3/2)
+[2019-05-20 17:46:30 CST] <Thread-39>  INFO: id = 20190520174630-315
+[2019-05-20 17:46:31 CST] <Thread-39> ERROR: Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)
+[2019-05-20 17:46:31 CST] <Thread-39>  INFO: Verify progress: Operation failed (Step 2/2)
+
+
+
+Package Summary:
+ 
+1 package(s) were not uploaded because they had problems:
+	C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp - Error Messages:
+		Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)
+[2019-05-20 17:50:47 CST] <Thread-41> Invalid cookie header: "Set-Cookie: dqsid=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJPLUNQMXR5dURYSTJyM1h4NjdVTWFnIn0.Gvozls4mY1wAErpLwDEWjrrAeBQ4UDAVdH9jy6ngOBQ; Max-Age=1800; Expires=Mon, 20 May 2019 10:20:49 GMT; Path=/; Secure; HTTPOnly". Invalid 'expires' attribute: Mon, 20 May 2019 10:20:49 GMT
+[2019-05-20 17:50:47 CST] <Thread-41> list apps success

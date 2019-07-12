@@ -1,0 +1,69 @@
+*{padding: 0;margin: 0;box-sizing: border-box;}
+html,body,.wrapper{width: 100%;height: 100%;overflow: hidden;}
+.wrapper{
+	background: #F7F7F9 ;
+}
+.main{height: calc(100% - .96rem);}
+.header{
+	height: .96rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 .3rem;
+}
+.header-aside{
+	width: 1rem;
+	display: flex;
+	align-items: center;
+}
+.header-aside img{
+	height: .36rem;
+}
+.header-text{
+	font-size: .36rem;
+	color: #272727 ;
+}
+.main-box{
+	background: #FFFFFF;
+	padding: 0 .4rem ;
+	overflow-x: scroll;
+	white-space: nowrap;
+	height: 1rem;
+	display: flex;
+	margin-bottom: .2rem;
+}
+.box-text{
+	width: 1.1rem;
+	font-size: .28rem;
+	color: #2B2B2B ;
+	margin-right: .6rem;
+	height: 1rem;
+	line-height: 1rem;
+	
+}
+.box-news{
+	color: #F65959 ;
+	border-bottom: 3px solid #F65959 ;
+}
+.main-one{
+	margin: .3rem 0 0 .3rem;
+	background: #FFFFFF;
+	height: 11rem;
+	width: calc(100% - .6rem);
+	overflow-y: scroll;
+	padding-bottom: .5rem;
+}
+.one-text{
+	font-size: .32rem ;
+	color: #F65959 ;
+	padding: .2rem;
+}
+.main-tab{
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid gainsboro;
+	overflow: hidden;
+}
+.main-tab img{width: .8rem;height: .8rem;border-radius: 50%;margin: .25rem;}
+.user-right{flex: 1;font-size: .4rem;}

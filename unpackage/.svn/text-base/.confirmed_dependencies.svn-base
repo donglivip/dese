@@ -1,0 +1,93 @@
+{
+	"index.html": {
+		"refer": [
+			"wode.html",
+			"shangpinxiangqing.html",
+			"gouwuche.html",
+			"jinjiliebiao.html",
+			"deseliebiao.html",
+			"fenlei.html",
+			"denglu.html",
+			"xiaoxi.html"
+		]
+	},
+	"wode.html": {
+		"refer": [
+			"index.html",
+			"shezhi.html",
+			"gouwuche.html",
+			"wodedanshu.html",
+			"zhanghuyue.html",
+			"lingqujilu.html",
+			"wodedingdan.html",
+			"xiaoshouzongshu.html",
+			"jinrishouru.html",
+			"fenlei.html"
+		]
+	},
+	"shezhi.html": {
+		"refer": [
+			"denglu.html",
+			"gerenziliao.html",
+			"wentifankui.html"
+		]
+	},
+	"shangpinxiangqing.html": {
+		"refer": [
+			"pinglun.html",
+			"tijiaodingdan.html",
+			"gouwuche.html"
+		]
+	},
+	"gouwuche.html": {
+		"refer": [
+			"index.html",
+			"fenlei.html",
+			"tijiaodingdan.html"
+		]
+	},
+	"zhanghuyue.html": {
+		"refer": [
+			"chongzhi.html",
+			"tixian.html",
+			"mingxi.html",
+			"renzhengzhongxin.html"
+		]
+	},
+	"denglu.html": {
+		"refer": [
+			"zhuce.html",
+			"index.html"
+		]
+	},
+	"fenlei.html": {
+		"refer": [
+			"index.html",
+			"shangpinxiangqing.html",
+			"gouwuche.html"
+		]
+	},
+	"tijiaodingdan.html": {
+		"refer": [
+			"wodedizhi.html",
+			"wodedingdan.html",
+			"index.html",
+			"xieyi.html"
+		]
+	},
+	"wodedizhi.html": {
+		"refer": [
+			"xinzengdizhi.html"
+		]
+	},
+	"deseliebiao.html": {
+		"refer": [
+			"shangpinxiangqing.html"
+		]
+	},
+	"wodedingdan.html": {
+		"refer": [
+			"dingdanxiangqing.html"
+		]
+	}
+}

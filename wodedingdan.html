@@ -41,12 +41,18 @@
 			<div class="cancel">
 				<div class="header">
 					<div class="header-aside">
-						<img src="img/youjian.png" />
+						<img src="img/y%20%20bai.png" >
 					</div>
 					<div class="header-text">申请退款</div>
 					<div class="header-aside"></div>
 				</div>
 				<div class="cancel-inner">
+					<div class="box">
+						<div class="text">
+							姓名
+						</div>
+						<input type="number" placeholder="请输入退款姓名" class="cancenname" />
+					</div>
 					<div class="box">
 						<div class="text">
 							金额
@@ -72,6 +78,11 @@
 					<div class="radio-box">
 						<input type="radio" name="smRoState" id="" value="1" checked="checked" /> 商城订单
 						<input type="radio" name="smRoState" id="" value="2" />领取产品
+					</div>
+					<div class="box" style="width: 100%;">
+						<div class="text" style="white-space: nowrap;">
+							上传商品凭证
+						</div>
 					</div>
 					<div class="radio-box">
 						<img src="img/addimg.png" class="uimg" myid=0 style="height: 1.5rem;margin: .2rem;">
@@ -470,6 +481,7 @@
 			//			提交取消
 			$(".cancelok").click(function() {
 				var cancentext = $('.cancentext').val()
+				var cancenname = $('.cancenname').val()
 				var cancenprice = $('.cancenprice').val()
 				var smRoCourier = $('.smRoCourier').val()
 				var smRoState = $("input[name='smRoState']:checked").val()
@@ -483,7 +495,7 @@
 					smOrRefundReason: cancentext,
 					smOrReturnPrice: cancenprice,
 					smRoPhone: smRoPhone,
-					smRoName: smRoName,
+					smRoName: cancenname,
 					smRoAddress: smRoAddress,
 					smRoStyle: smRoStyle,
 					smRoState: smRoState,

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="./css/fensi.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside mui-action-back">
+					<img src="./img/youjian.png" />
+				</div>
+				<div class="header-text">粉丝明细</div>
+				<div class="header-aside"></div>
+			</div>
+			<div class="main">
+				<div class="main-three">
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/jquery.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				type: "post",
+				url: myurl + "/commodity/querySmUserByGradeId",
+				async: true,
+				data: {
+					smUserId: localStorage.getItem('myid')
+				},
+				dataType: 'json',
+				success: function(res) {
+					if (res.status == 200) {
+						for (var i in res.data.fensiList) {
+							$('.main-three').append(
+								`
+									<div class="three-box dengji">
+										<div class="three-text">电话号码：${res.data.fensiList[i].smUsPhone}</div>
+									</div>
+								`
+							)
+						}
+					} else {
+						alert(res.msg)
+					}
+				},
+				error: function(err) {
+					alert("网络连接失败，请稍后重试")
+				}
+			});
+		})
+	</script>
+</html>

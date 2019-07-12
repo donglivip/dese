@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/tijiaodingdan.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-cebian mui-action-back">
+					<img src="img/youjian.png" />
+				</div>
+				<div class="header-text">确认订单</div>
+				<div class="header-cebian"></div>
+			</div>
+			<div class="main">
+				<div class="main-one" @click="opennew('wodedizhi')">
+					<div class="one-left">
+						<img src="img/dingwei.png" />
+					</div>
+					<div class="one-content">
+						<div class="content-text">{{adressdata.smUaProvince}}{{adressdata.smUaResult}}</div>
+						<div class="content-news">{{adressdata.smUaName}}</div>
+						<div class="content-news">{{adressdata.smUaPhone}}</div>
+					</div>
+					<div class="one-right">
+						<img src="img/you-hui.png" />
+					</div>
+				</div>
+				<div class="main-box">
+					<div class="main-two" v-for="val in shopdata">
+						<img :src="myurl + val.smCoBannerImg" style="width: .9rem;height: .9rem;margin-right: .2rem;">
+						<div class="two-text">{{val.shopname}}<small style="font-size: .1rem;"></small> </div>
+						<div class="two-text" style="text-align: right;">
+							¥{{val.smOdPrice}}<br /> x{{val.smOdNum}}
+						</div>
+					</div>
+					<div class="main-three">
+						<textarea placeholder="买家留言（50字以内）" v-model="smOrRemarke"></textarea>
+					</div>
+					<div class="main-three" @click="alertchange()">
+						<div class="two-text">{{smOrPayStyle | ptype}}</div>
+						<img src="img/you-hui.png" />
+					</div>
+					<div class="main-three" >
+						<div class="two-text">运费</div>
+						<span style="font-size: .22rem;">￥{{smOrFreight}}</span>
+					</div>
+					<div class="main-three" >
+						<div class="two-text">小计</div>
+						<span style="font-size: .22rem;">
+							￥{{smOrPrice}}
+						</span>
+					</div>
+					<div class="main-three" style="font-size: .2rem;" v-if="jinji!=''">
+						<input type="checkbox" id="check" @change="opennew('xieyi')" checked="checked"/>
+						<span @click="opennew('xieyi')">
+							结算即视为同意<<的色时代>>商城购买须知
+						</span>
+					</div>
+				</div>
+
+			</div>
+			<div class="bottom" @click="pay">
+				<div class="bottom-left">
+					需付：
+					<strong>￥{{smOrPrice + smOrFreight}}</strong>
+				</div>
+				<div class="bottom-text">立即支付</div>
+			</div>
+			<div class="alert" v-if="alertboo">
+				<div class="alert-inner">
+					<div class="alert-tab" @click="change('1')">
+						支付宝支付
+					</div>
+					<div class="alert-tab" @click="change('2')">
+						微信支付
+					</div>
+<!-- 					<div class="alert-tab" @click="change('3')">
+						余额支付
+					</div> -->
+					<div class="alert-tab" @click="change('4')">
+						积分支付
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/URL.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var vue = new Vue({
+			el: '.wrapper',
+			data: {
+				shopdata: JSON.parse(localStorage.getItem('shopdata')),
+				adressdata: {},
+				alertboo: false,
+				smOrRemarke: '',
+				smOrPayStyle: '1',
+				smOrFreight: 0,
+				jinji: '',
+				channel: '',
+				smOrPrice: 0,
+				smOrNum: 0
+			},
+			methods: {
+				pay: function() {
+					// plus.nativeUI.showWaiting()
+					if($('#check').is(':checked') == false) {
+						if(this.jinji!=''){
+							alert('请同意注册协议！')
+							plus.nativeUI.closeWaiting()
+							return
+						}
+					}
+					var that = this,
+						smOrNum = 0,
+						smOrPrice = 0,
+						hurl = ''
+					for(var i in that.shopdata) {
+						smOrPrice += that.shopdata[i].smOdPrice * that.shopdata[i].smOdNum
+						smOrNum += parseInt(that.shopdata[i].smOdNum)
+						if(that.shopdata[i].smOdCreateName == 1) {
+							that.jinji = that.shopdata[i].smCommodityId
+						}
+					}
+					if(that.smOrPayStyle == 3 || that.smOrPayStyle == 4) {
+						hurl = myurl + "/commodity/insertOrderByWallet"
+					} else {
+						hurl = myurl + "/commodity/insertOrder"
+					}
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/querySmUserWallet",
+						async: true,
+						dataType: 'json',
+						data: {
+							smUserId: localStorage.getItem('myid')
+						},
+						success: function(res) {
+							if(res.status == 200) {
+								// if((res.data.smUwPrice < (10 + smOrPrice)) && (that.smOrPayStyle == 3 || that.smOrPayStyle == 4)) {
+								// 	alert('账户余额不可低于10元')
+								// 	plus.nativeUI.closeWaiting()
+								// } else {
+									$.ajax({
+										type: "post",
+										url: hurl,
+										async: true,
+										data: {
+											details: JSON.stringify({
+												"smUserId": localStorage.getItem('myid'), //用户id
+												"smOrPayStyle": that.smOrPayStyle, //支付方式
+												"smOrNum": smOrNum, //总数量
+												"smOrPrice": smOrPrice, //总价格
+												"smOrStyle": "1", //固定为1
+												"smOrRemarke": that.smOrRemarke, //备注
+												"smOrFreight": that.smOrFreight, //运费
+												"smOrAddressPhone": that.adressdata.smUaPhone,
+												"smOrAddressDetails": that.adressdata.smUaProvince+' '+that.adressdata.smUaResult,
+												"smOrAddressName": that.adressdata.smUaName,
+												"smOrderDetail": that.shopdata
+											})
+										},
+										dataType: 'json',
+										success: function(res) {
+											//							钱包支付
+											if(that.smOrPayStyle == 3 || that.smOrPayStyle == 4) {
+												if(res.status == 200) {
+													that.mysuccess(res.data)
+												} else {
+													alert(res.msg)
+													plus.nativeUI.closeWaiting()
+													that.opennew('index')
+												}
+											} else if(that.smOrPayStyle == 1) {
+
+												//								支付宝支付
+												plus.payment.request(that.channel[0], res.data[0], function(result) {
+													plus.nativeUI.alert("支付成功！", function() {
+														that.mysuccess(res.data[1])
+													});
+												}, function(error) {
+													plus.nativeUI.closeWaiting()
+													alert('支付失败！')
+													that.opennew('index')
+												});
+											} else {
+												//								微信支付
+												plus.payment.request(that.channel[1], res, function(result) {
+													plus.nativeUI.alert("支付成功！", function() {
+														that.mysuccess(res.orderId)
+													});
+												}, function(error) {
+													plus.nativeUI.closeWaiting()
+													alert('支付失败！')
+													that.opennew('index')
+												});
+											}
+										},
+										error: function(err) {
+											plus.nativeUI.closeWaiting()
+											alert("网络连接失败，请稍后重试")
+											that.opennew('index')
+										}
+									});
+							// 	}
+							} else {
+								plus.nativeUI.closeWaiting()
+								alert(res.data)
+							}
+						},
+						error: function(err) {
+							plus.nativeUI.closeWaiting()
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+				},
+				mysuccess: function(orderid) {
+					var that = this
+					if(that.jinji == '') {
+						plus.nativeUI.closeWaiting()
+						that.opennew('wodedingdan')
+					} else {
+						//									祁雷的用户升级
+						$.ajax({
+							type: "post",
+							url: myurl + "/benefits/updateUserByPhone",
+							async: true,
+							data: {
+								smUserId: localStorage.getItem('myid')
+							},
+							dataTpe: 'json',
+							success: function(res) {
+								if(res.status = 200) {
+									//						先分红
+									$.ajax({
+										type: "post",
+										url: myurl + "/benefits/shareBenefits",
+										async: true,
+										data: {
+											userId: localStorage.getItem('myid'),
+											commodityIds: that.jinji,
+											orderId: orderid
+										},
+										dataType: 'json',
+										success: function(res) {
+											//									用户升级
+											$.ajax({
+												type: "post",
+												url: myurl + "/benefits/levelPromotion",
+												async: true,
+												data: {
+													userId: localStorage.getItem('myid')
+												},
+												dataTpe: 'json',
+												success: function(res) {
+													if(res.status = 200) {
+														//					购买晋级商品赠送商品
+														$.ajax({
+															type: "post",
+															url: myurl + "/commodity/insertSmUserColletionRecord",
+															async: true,
+															data: {
+																smUserId: localStorage.getItem('myid'),
+																smCommodityId: that.jinji
+															},
+															dataTpe: 'json',
+															success: function(res) {
+																if(res.status = 200) {
+																	localStorage.setItem('dengji', res.data.smGradeRuleId) //代理等级ID
+																	localStorage.setItem('smUsUpdateName', res.data.smUsUpdateName) //代理等级名称
+																	plus.nativeUI.closeWaiting()
+																	that.opennew('wodedingdan')
+																} else {
+																	alert(res.msg)
+																}
+															},
+															error: function(err) {
+																alert("网络连接失败，请稍后重试")
+															}
+														});
+
+													} else {
+														alert(res.msg)
+													}
+												},
+												error: function(err) {
+													alert("网络连接失败，请稍后重试")
+												}
+											});
+										},
+										error: function(err) {
+											alert("网络连接失败，请稍后重试")
+										}
+									});
+								} else {
+									alert(res.msg)
+								}
+							},
+							error: function(err) {
+								alert(JSON.stringify(err))
+								alert("网络连接失败，请稍后重试")
+							}
+						});
+
+					}
+				},
+				change: function(text) {
+					this.smOrPayStyle = text
+					this.alertchange()
+				},
+				alertchange: function() {
+					this.alertboo = !this.alertboo
+				},
+				opennew: function(target) {
+					mui.openWindow({
+						url: '' + target + '.html',
+						id: target
+					})
+				},
+				myajax: function() {
+					var that = this
+					that.smOrPrice = 0
+					that.smOrNum = 0
+					for(var i in that.shopdata) {
+						that.smOrPrice += that.shopdata[i].smOdPrice * that.shopdata[i].smOdNum
+						that.smOrNum += parseInt(that.shopdata[i].smOdNum)
+						if(that.shopdata[i].smOdCreateName == 1) {
+							that.jinji = that.shopdata[i].smCommodityId
+						}
+					}
+					//					获取地址
+					$.ajax({
+						type: "post",
+						url: myurl + "/smUser/querySmUserAddress",
+						async: true,
+						data: {
+							smUserId: localStorage.getItem('myid')
+						},
+						dataType: 'json',
+						success: function(res) {
+							if(res.status = 200) {
+								if(res.data.length == 0) {
+									that.opennew('wodedizhi')
+									return false;
+								}
+								for(var i in res.data) {
+									if(res.data[i].smUaIsDefault == 1) {
+										that.adressdata = res.data[i]
+									}
+								}
+								//					查询运费
+								var index = parseInt(that.adressdata.smUaProvince.indexOf('省')) + 1
+								if(index == 0) {
+									index = parseInt(that.adressdata.smUaProvince.indexOf('市')) + 1
+								}
+								if(index == 0) {
+									index = parseInt(that.adressdata.smUaProvince.indexOf('区')) + 1
+								}
+								var adress = that.adressdata.smUaProvince.substring(0, index)
+								$.ajax({
+									type: "post",
+									url: myurl + "/commodity/querySmExpressFeeByCity",
+									async: true,
+									data: {
+										city: adress
+									},
+									dataTpe: 'json',
+									success: function(res) {
+										if(res.status = 200) {
+											if(res.data == 0) {
+												that.smOrFreight = res.data
+											} else {
+												var smOrNum = 0
+												for(var i in that.shopdata) {
+													if(that.shopdata[i].smCoIsFreeShipping!=1){
+														smOrNum += parseInt(that.shopdata[i].smOdNum)
+													}
+												}
+												if(smOrNum - res.data.smEfDefaultNum > 0) {
+													that.smOrFreight = res.data.smEfDefaultPrice + ((smOrNum - res.data.smEfDefaultNum) / res.data.smEfAddNum) * res.data.smEfAddPrice
+												}else if(smOrNum==0){
+													that.smOrFreight = 0
+												} else {
+													that.smOrFreight = res.data.smEfDefaultPrice
+												}
+											}
+
+										} else {
+											alert(res.msg)
+										}
+									},
+									error: function(err) {
+										alert("网络连接失败，请稍后重试")
+									}
+								});
+							} else {
+								alert(res.msg)
+							}
+						},
+						error: function(err) {
+							alert("网络连接失败，请稍后重试")
+						}
+					});
+
+				}
+			},
+			mounted: function() {
+				var that = this
+				this.myajax()
+				document.addEventListener('myajax', function() {
+					that.myajax()
+				})
+				// 1. 获取支付通道
+				function plusReady() {
+					// 获取支付通道
+					plus.payment.getChannels(function(channels) {
+						that.channel = channels;
+					}, function(e) {
+						alert("获取支付通道失败：" + e.message);
+					});
+				}
+				if(window.plus) {
+					plusReady();
+				} else {
+					document.addEventListener('plusready', plusReady, false);
+				}
+			},
+			filters: {
+				ptype: function(value) {
+					if(value == '1') {
+						return '支付宝支付'
+					} else if(value == '2') {
+						return '微信支付'
+					} else if(value == '3') {
+						return '钱包支付'
+					} else if(value == '4') {
+						return '积分支付'
+					}
+
+				}
+			}
+		})
+	</script>
+
+</html>

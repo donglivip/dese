@@ -1,0 +1,24 @@
+[2019-05-20 17:34:49 CST] <Thread-23>  INFO: Logging to file: C:\Users\Shinelon\Documents\HBuilderProject\dese\unpackage\release\H543BB11E_0520172922.ipa_1905201734.log
+[2019-05-20 17:34:49 CST] <Thread-23>  INFO: Logging configured successfully.
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: iTMSTransporter : iTunes Store Transporter [1.9.8]
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: OS identifier: Windows 10 10.0 (amd64); jvm=25.171-b11; jre=1.8.0_171-b11
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Memory: [JVM] 91M free, 135M total, 1794M max [System] (Physical) 2870M free, 8069M total (Swap) 5784M free, 14183M total
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Upload mode selected.
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Examining the package at: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Ensuring that package has well formed metadata file...
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Gathering the list of valid files from the package ...
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Finished gathering the list of valid files from the package.
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Verify progress: Analyzing metadata (Step 0/?)
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Performing authentication of package 1464497140.itmsp ...
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: Verify progress: Analyzing metadata (Step 1/2)
+[2019-05-20 17:34:50 CST] <Thread-23>  INFO: id = 20190520173450-613
+[2019-05-20 17:34:51 CST] <Thread-23> ERROR: Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)
+[2019-05-20 17:34:51 CST] <Thread-23>  INFO: Verify progress: Operation failed (Step 2/2)
+
+
+
+Package Summary:
+ 
+1 package(s) were not uploaded because they had problems:
+	C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1464497140.itmsp - Error Messages:
+		Please sign in with an app-specific password. You can create one at appleid.apple.com. (-22910)

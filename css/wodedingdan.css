@@ -180,7 +180,10 @@ form,form input{
 	padding-bottom: .2rem;
 }
 .cancel{flex-direction: column;}
-.cancel .header{width: 100%;}
+.cancel .header{width: 100%;background: #c30e21;}
+.cancel .header-text{color: #FFFFFF!important;}
+.cancel .btn-box{position: fixed;bottom: 0;left: 0;width: 100%;}
+.cancel .btn{width: 50%;}
 .cancel-inner{
 	justify-content: flex-start;
 }
